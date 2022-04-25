@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+   display: none;
+}
+
+#zaloQR-block::before {
+   content: "";
+   position: absolute;
+   top: -13px;
+   right: 0;
+   width: 100%;
+   height: 30px;
+}
+
+.mainMenu {
+   @apply hidden md:flex md:justify-center md:items-center md:justify-evenly md:h-14 md:min-h-full md:list-none;
+
+   li {
+      @apply capitalize font-serif font-semibold antialiased text-blue-500;
+      cursor: pointer;
+   }
+
+   & .active {
+      @apply bg-blue-400 text-white p-2 rounded-md;
+   }
+}
+
+.mainMenu--mobile {
+   @apply z-20 w-full h-screen fixed ease-in-out duration-300;
+
+   width: 0;
+
+   & .mainMenu--mobile--main {
+      @apply z-30 bg-white w-2/3 h-screen fixed;
+
+      & .mainMenu--mobile--main__list {
+         @apply flex flex-col justify-center items-center space-y-6;
+
+         li {
+            @apply text-xl capitalize font-semibold antialiased text-blue-500 break-words;
+            max-width: 7rem;
+            cursor: pointer;
+         }
+
+         & .active {
+            @apply bg-blue-400 text-white p-2 rounded-md;
+         }
+      }
+   }
+
+   & .mainMenu--mobile__overlay {
+      @apply z-20 bg-black bg-opacity-75 h-full w-full fixed;
+   }
+
+   & .on {
+      transform: none;
+   }
+
+
+}
+
+.tourList {
+   & .tourList-title {
+      @apply my-4 mb-0 border-b-2 border-yellow-500 py-2 pb-2;
+
+      & .tourList-title__label {
+         @apply bg-yellow-500 text-white rounded-tl-xl rounded-br-xl py-2 px-6 hover:rounded-tl-none hover:rounded-br-none hover:rounded-bl-xl hover:rounded-tr-xl transition ease-in-out delay-150 hover:-translate-y-1 duration-300;
+      }
+   }
+
+   & .tourList__item {
+      @apply relative bg-white p-3 mt-6 shadow-xl rounded-md md:grid md:grid-cols-6 md:gap-6 first:mt-0 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-300;
+
+      & .tourList__price {
+         @apply absolute bg-cyan-700 text-white px-10 py-2 rounded-bl-2xl;
+         top: 0.75rem;
+         right: 0.72rem;
+
+         @media (min-width: 768px) {
+            @apply rounded-tl-none rounded-bl-none rounded-br-2xl;
+            position: inherit;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+         }
+      }
+   }
+}
+
+.b-title {
+   @apply mb-0 border-b-2 border-red-500 py-2 pb-2;
+
+   .label {
+      @apply bg-red-500 text-white rounded-tl-xl rounded-br-xl py-2 px-6;
+   }
+}
