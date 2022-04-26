@@ -11,17 +11,11 @@
             </div>
          @endif
 
-         {{--         @if($errors->any())--}}
-         {{--            <div class='bg-red-500 text-white my-4 p-4 rounded-md shadow-md'>--}}
-         {{--               <span class='text-xl'>Đã xảy ra lỗi vui lòng kiểm tra rồi thử lại!</span>--}}
-
-         {{--               <ul>--}}
-         {{--                  @foreach($errors->all() as $error)--}}
-         {{--                     <li>- <b>{{ $error }}</b></li>--}}
-         {{--                  @endforeach--}}
-         {{--               </ul>--}}
-         {{--            </div>--}}
-         {{--         @endif--}}
+         @if(session()->has('error'))
+            <div class='bg-red-500 text-white my-4 p-4 rounded-md shadow-md'>
+               <span class='text-xl'>{{ session('error') }}</span>
+            </div>
+         @endif
 
          <div class='bg-white p-4 rounded-b-md shadow-md'>
             <div class='grid grid-cols-2 gap-6'>

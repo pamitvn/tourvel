@@ -9,3 +9,12 @@ function get_site_title($title, $suffixes = true, $separator = '-'): string
       'separator' => $separator
    ]);
 }
+
+function get_nova_url($path): string
+{
+   $domain = URL::assetFrom('https://' . config('nova.domain'), $path, false);
+
+   return config('nova.domain')
+      ? $domain
+      : URL::asset(config('nova.path', '/nova') . $path);
+}

@@ -19,13 +19,14 @@ class ContactMail extends Mailable implements ShouldQueue
       $this->data = collect($data);
    }
 
-   public function subject($subject)
-   {
-      return nova_get_setting('smtp_from_name', 'The Best Tour') . " - yêu cầu liên hệ từ {$this->data['fullName']}";
-   }
-
    public function build()
    {
-      return $this->from($this->data->get('email', nova_get_setting('smtp_from_address')))->markdown('emails.contact')->with('data', $this->data);
+      $subject = nova_get_setting('smtp_from_name', 'The Best Tour') . " - yêu cầu liên hệ từ {$this->data['fullName']}";
+      $from = $this->data->get('email', nova_get_setting('smtp_from_address'));
+
+      return $this->subject($subject)
+         ->from($from)
+         ->markdown('emails.contact')
+         ->with('data', $this->data);
    }
 }

@@ -35,13 +35,6 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']
    Lfm::routes();
 });
 
-Route::get('mailable', fn() => new \App\Mail\ContactMail([
-   'fullName' => 'Pham Minh An',
-   'email' => 'anphamlmht@gmail.com',
-   'phoneNumber' => '0938294427',
-   'address' => 'asdasd',
-   'content' => 'adasddsa',
-   'at' => now()
-]));
+Route::get('mailable', fn() => new \App\Mail\CustomerBookedMail(\App\Models\Tour\TourBooked::first()));
 
 Route::get('{slug}', PostController::class)->name('posts.detail');

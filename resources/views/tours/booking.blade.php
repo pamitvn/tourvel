@@ -11,7 +11,7 @@
 
          <div class='mt-8 md:mt-4 md:grid md:grid-cols-12'>
             <div class='col-span-4'>
-               <p><b>Liên hệ</b>: {{ !empty($property->contact_phone) ? $property->contact_phone :  '0000000' }}</p>
+               <p><b>Liên hệ</b>: {{ !empty($property->contact_phone) ? $property->contact_phone :  nova_get_setting('contact_phone') }}</p>
                <p><b>Khởi hành</b>: {{ $property->started_date->format('d/m/Y') }}</p>
                <p><b>Thời gian</b>: {{ $property->time ?? $tour->timetables_count . ' ngày' }}</p>
                <p><b>Phương tiện</b>: {{ $property->vehicle }}</p>

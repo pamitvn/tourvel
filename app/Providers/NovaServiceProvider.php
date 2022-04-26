@@ -10,6 +10,7 @@ use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\URL;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
@@ -35,6 +36,14 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                Image::make('Logo', 'site_logo')->nullable(),
                Image::make('Favicon', 'site_favicon')->nullable(),
                NovaTinyMCE::make('Footer', 'site_footer')->nullable()
+            ]),
+
+            new Panel('SEO', [
+               Text::make('Title', 'seo_title')->nullable(),
+               Textarea::make('Description', 'seo_description')->nullable(),
+               Text::make('Keywords', 'seo_keyword')->nullable(),
+               Image::make('Image', 'seo_image')->nullable(),
+               Text::make('Facebook App ID', 'seo_facebook_app_id')->nullable(),
             ]),
 
             new Panel('Contact', [

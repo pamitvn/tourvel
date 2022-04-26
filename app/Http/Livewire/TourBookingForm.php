@@ -2,8 +2,12 @@
 
 namespace App\Http\Livewire;
 
+use App\Enums\TourStatusEnum;
+use App\Jobs\CustomerBookedJob;
+use App\Jobs\SendNotifyBookedJob;
 use App\Models\Customer;
 use App\Models\Tour;
+use App\Notifications\BookedNotification;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -81,6 +85,10 @@ class TourBookingForm extends Component
 
          if ($property->seat_available !== -1 && $property->seat_available < $property->amount) {
             $this->addError('amount', 'Không còn chỗ trống');
+
+            if ($property->status === TourStatusEnum::Seats) $property->update([
+               'status' => TourStatusEnum::SeatsFull
+            ]);
             return;
          }
 
@@ -118,6 +126,9 @@ class TourBookingForm extends Component
          ])->toArray();
 
          $booked->amounts()->createMany($amounts);
+
+         dispatch(new SendNotifyBookedJob($booked));
+         dispatch(new CustomerBookedJob($booked));
 
          session()->flash('success', 'Đã đăng ký thành công');
 
