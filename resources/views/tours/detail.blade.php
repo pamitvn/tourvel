@@ -5,6 +5,12 @@
 @endphp
 
 @section('title', get_site_title($tour->name))
+@section('seo.og:title', get_site_title($tour->name))
+@section('seo.twitter:title', get_site_title($tour->name))
+@section('seo.description', $tour->short_description)
+@section('seo.og:description', $tour->short_description)
+@section('seo.og:image', url(Storage::url($tour->cover_image)))
+@section('seo.twitter:image', url(Storage::url($tour->cover_image)))
 
 @section('content')
    <section class='my-5'>

@@ -65,9 +65,9 @@
    @endif
 
    @hasSection('seo.og:description')
-      <meta name="og:description" content="@yield('og:description')">
+      <meta name="og:description" content="@yield('seo.og:description')">
    @elseif(nova_get_setting('seo_description'))
-      <meta name="og:description" content="{{ nova_get_setting('seo_description') }}">
+      <meta name="og:description" content="{{ nova_get_setting('seo.og:description') }}">
    @endif
 
    @hasSection('seo.og:url')

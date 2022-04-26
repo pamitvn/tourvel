@@ -1,6 +1,8 @@
 @extends('layouts.master')
 
 @section('title', get_site_title('Liên hệ - góp ý'))
+@section('seo.og:title', get_site_title('Liên hệ - góp ý'))
+@section('seo.twitter:title', get_site_title('Liên hệ - góp ý'))
 
 @section('content')
    <section class='mx-6 mt-6 md:container md:mx-auto'>

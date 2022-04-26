@@ -1,6 +1,12 @@
 @extends('layouts.master')
 
 @section('title', get_site_title($post->title))
+@section('seo.og:title', get_site_title($post->seo_title ?? $post->title))
+@section('seo.twitter:title', get_site_title($post->seo_title ?? $post->title))
+@section('seo.description', $post->seo_description ?? $post->short_description)
+@section('seo.og:description', $post->seo_description ?? $post->short_description)
+@section('seo.og:image', url(Storage::url($post->seo_image ??$post->feature_image)))
+@section('seo.twitter:image', url(Storage::url($post->seo_image ??$post->feature_image)))
 
 @section('content')
    <section class='my-5'>
@@ -13,7 +19,8 @@
                   <img class="w-full" src="{{ Storage::url($post->feature_image) }}"
                        alt="Mountain">
                </div>
-               <p class='px-6 text-sm bg-gray-300 py-1 text-center text-black'>Xuất bản vào ngày: {{ $post->created_at->format('d/m/Y') }}</p>
+               <p class='px-6 text-sm bg-gray-300 py-1 text-center text-black'>Xuất bản vào
+                  ngày: {{ $post->created_at->format('d/m/Y') }}</p>
                <div class="px-6 py-4">
                   <div>
                      {!! $post->content !!}

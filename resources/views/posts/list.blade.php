@@ -1,6 +1,8 @@
 @extends('layouts.master')
 
 @section('title', 'Tin tức')
+@section('seo.twitter:title', 'Tin tức')
+@section('seo.og:title', 'Tin tức')
 
 @section('content')
    <section class='my-5'>

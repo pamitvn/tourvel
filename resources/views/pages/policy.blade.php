@@ -1,6 +1,8 @@
 @extends('layouts.master')
 
 @section('title', get_site_title('Chích sách'))
+@section('seo.og:title', get_site_title('Chích sách'))
+@section('seo.twitter:title', get_site_title('Chích sách'))
 
 @section('content')
    <section class='my-5'>
