@@ -105,6 +105,15 @@
                </div>
             @endif
 
+            <h3 class='b-title my-4 mt-8'>
+               <span class='label'>Bình luận</span>
+            </h3>
+
+            <div class='bg-white p-4 rounded-b-md w-full'>
+               <div class="fb-comments" data-href="{{ request()->fullUrl() }}"
+                    data-width="100%" data-numposts="5"></div>
+            </div>
+
          </div>
          <div class='col-span-1'></div>
       </div>

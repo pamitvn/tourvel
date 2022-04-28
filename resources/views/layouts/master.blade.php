@@ -102,6 +102,9 @@
    <link rel='stylesheet' href='{{ asset('fontawesome/css/all.css') }}'>
    @livewireStyles
    @stack('head')
+   <div id="fb-root"></div>
+   <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v13.0"
+           nonce="9TbDZbSW"></script>
    @if(nova_get_setting('custom_head'))
       {!! nova_get_setting('custom_head') !!}
    @endif

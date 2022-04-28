@@ -88,7 +88,7 @@
 </div>
 
 {{--bg-amber-700--}}
-<div class='bg-white text-black shadow-3xl'>
+<div class='bg-[#5504ca] text-white shadow-3xl'>
    <div class='md:container md:mx-auto relative px-3 md:p-0'>
       <div
          class='h-auto py-3 min-h-full md:flex md:justify-evenly lg:mx-8 lg:justify-between xl:mx-8 xl:justify-between items-center'>
@@ -187,7 +187,7 @@
    <x-slider />
 </div>
 
-<nav class='hidden md:block bg-white text-black shadow-md'>
+<nav class='hidden md:block bg-[#5504ca] text-black shadow-md'>
    <div class='container mx-auto'>
       <ul class='mainMenu'>
          @foreach($globalMainMenu as $menu)

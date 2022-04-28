@@ -20,7 +20,7 @@ input::-webkit-inner-spin-button {
    @apply hidden md:flex md:justify-center md:items-center md:justify-evenly md:h-14 md:min-h-full md:list-none;
 
    li {
-      @apply capitalize font-serif font-semibold antialiased text-blue-500;
+      @apply capitalize font-serif font-semibold antialiased text-white;
       cursor: pointer;
    }
 
@@ -65,10 +65,10 @@ input::-webkit-inner-spin-button {
 
 .tourList {
    & .tourList-title {
-      @apply my-4 mb-0 border-b-2 border-yellow-500 py-2 pb-2;
+      @apply my-4 mb-0 border-b-2 border-yellow-600 py-2 pb-2;
 
       & .tourList-title__label {
-         @apply bg-yellow-500 text-white rounded-tl-xl rounded-br-xl py-2 px-6 hover:rounded-tl-none hover:rounded-br-none hover:rounded-bl-xl hover:rounded-tr-xl transition ease-in-out delay-150 hover:-translate-y-1 duration-300;
+         @apply bg-yellow-600 text-white rounded-tl-xl rounded-br-xl py-2 px-6 hover:rounded-tl-none hover:rounded-br-none hover:rounded-bl-xl hover:rounded-tr-xl transition ease-in-out delay-150 hover:-translate-y-1 duration-300;
       }
    }
 
