@@ -19,7 +19,7 @@ class NovaTinyMCECasts implements CastsAttributes
     */
    public function get($model, $key, $value, $attributes): string
    {
-      return urldecode($value);
+      return base64_decode($value, true) ? urldecode(base64_decode($value, true)) : $value;
    }
 
    /**
@@ -33,6 +33,6 @@ class NovaTinyMCECasts implements CastsAttributes
     */
    public function set($model, $key, $value, $attributes): string
    {
-      return urldecode(trim($value)) == trim($value) ? urlencode(urldecode($value)) : urlencode($value);
+      return base64_decode($value, true) ? $value : base64_encode(urlencode($value));
    }
 }

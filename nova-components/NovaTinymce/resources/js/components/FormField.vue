@@ -57,7 +57,7 @@ export default {
          * Fill the given FormData object with the field's internal value.
          */
         fill(formData) {
-          formData.append(this.field.attribute, encodeURIComponent(this.value || ''))
+          formData.append(this.field.attribute, window.btoa(encodeURIComponent(this.value || '')))
         },
 
         /**
