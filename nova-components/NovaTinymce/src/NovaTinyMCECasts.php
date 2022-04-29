@@ -13,13 +13,13 @@ class NovaTinyMCECasts implements CastsAttributes
     *
     * @param Model $model
     * @param string $key
-    * @param string $value
+    * @param null|string $value
     * @param array $attributes
-    * @return string
+    * @return string|null
     */
-   public function get($model, $key, $value, $attributes): string
+   public function get($model, $key, $value, $attributes): ?string
    {
-      return base64_decode($value, true) ? urldecode(base64_decode($value, true)) : $value;
+      return $value ? (base64_decode($value, true) ? urldecode(base64_decode($value, true)) : $value) : null;
    }
 
    /**
