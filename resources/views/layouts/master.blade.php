@@ -8,7 +8,7 @@
 
    <title>@yield('title', '')</title>
 
-   @if(nova_get_setting('site_favicon'))
+   @if(nova_get_setting('site_favicon') && Storage::exists(nova_get_setting('site_favicon')))
       <link rel="apple-touch-icon" sizes="180x180" href="{{ Storage::url(nova_get_setting('site_favicon')) }}">
       <link rel="icon" type="{{ mime_content_type(storage_path('app/public/'.nova_get_setting('site_favicon'))) }}"
             sizes="32x32" href="{{ Storage::url(nova_get_setting('site_favicon')) }}">
@@ -53,7 +53,7 @@
 
    @hasSection('seo.twitter:image')
       <meta name="twitter:image" content="@yield('seo.twitter:image')">
-   @elseif(nova_get_setting('seo_image'))
+   @elseif(nova_get_setting('seo_image') && Storage::exists(nova_get_setting('seo_image')))
       <meta name="twitter:image" content="{{ url(Storage::url(nova_get_setting('seo_image'))) }}">
    @endif
 
@@ -88,7 +88,7 @@
 
    @hasSection('seo.og:image')
       <meta name="og:image" content="@yield('seo.og:image')">
-   @elseif(nova_get_setting('seo_image'))
+   @elseif(nova_get_setting('seo_image') && Storage::exists(nova_get_setting('seo_image')))
       <meta name="og:image" content="{{ url(Storage::url(nova_get_setting('seo_image'))) }}">
    @endif
 

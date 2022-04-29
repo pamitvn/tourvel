@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Emilianotisato\NovaTinyMCE\NovaTinyMCE;
+use Emilianotisato\NovaTinyMCE\NovaTinyMCECasts;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 use Laravel\Nova\Fields\Code;
@@ -58,6 +59,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                Image::make('Zalo QR', 'social_zalo_qr')->nullable(),
                URL::make('Facebook', 'social_facebook')->nullable()
             ])
+         ], [
+            'site_footer' => NovaTinyMCECasts::class,
          ]);
 
          NovaSettings::addSettingsFields([
@@ -67,7 +70,10 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             new Panel('Contact', [
                Text::make('Mail To', 'page_contact_mail_to')->rules('nullable', 'email')->nullable()
             ])
-         ], [], 'Pages');
+         ], [
+            'page_policy_content' => NovaTinyMCECasts::class,
+            'page_contact_mail_to' => NovaTinyMCECasts::class,
+         ], 'Pages');
 
          NovaSettings::addSettingsFields([
             Text::make('Host', 'smtp_host')->nullable(),

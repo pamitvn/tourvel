@@ -87,7 +87,6 @@
    <div class='mainMenu--mobile__overlay'></div>
 </div>
 
-{{--bg-amber-700--}}
 <div class='bg-[#5504ca] text-white shadow-3xl'>
    <div class='md:container md:mx-auto relative px-3 md:p-0'>
       <div
@@ -176,10 +175,12 @@
          </div>
       </div>
 
-      <div id='zaloQR-block'
-           class='absolute hidden p-3 bg-gray-300 shadow-md right-0 lg:right-14 xl:right-0 top-16 rounded-md shadow-lg transition duration-300 ease-in-out z-10'>
-         <img src='{{ Storage::url(nova_get_setting('social_zalo_qr')) }}' alt='Zalo QR' width='150'>
-      </div>
+      @if(nova_get_setting('social_zalo_qr') && Storage::exists(nova_get_setting('social_zalo_qr')))
+         <div id='zaloQR-block'
+              class='absolute hidden p-3 bg-gray-300 shadow-md right-0 lg:right-14 xl:right-0 top-16 rounded-md shadow-lg transition duration-300 ease-in-out z-10'>
+            <img src='{{ Storage::url(nova_get_setting('social_zalo_qr')) }}' alt='Zalo QR' width='150'>
+         </div>
+      @endif
    </div>
 </div>
 

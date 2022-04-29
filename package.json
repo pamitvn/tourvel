@@ -11,7 +11,9 @@
         "build-tour-properties-status": "cd nova-components/TourPropertiesStatus && npm run dev",
         "build-tour-properties-status-prod": "cd nova-components/TourPropertiesStatus && npm run prod",
         "build-asd": "cd nova-components/Asd && npm run dev",
-        "build-asd-prod": "cd nova-components/Asd && npm run prod"
+        "build-asd-prod": "cd nova-components/Asd && npm run prod",
+        "build-nova-tinymce": "cd nova-components/NovaTinymce && npm run dev",
+        "build-nova-tinymce-prod": "cd nova-components/NovaTinymce && npm run prod"
     },
     "devDependencies": {
         "@tailwindcss/aspect-ratio": "^0.4.0",

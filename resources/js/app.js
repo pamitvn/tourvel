@@ -27,6 +27,8 @@ function zaloQR() {
    const zaloIcon = document.getElementById('zaloQR-icon');
    const zaloBlock = document.getElementById('zaloQR-block');
 
+   if (!zaloIcon || !zaloBlock) return;
+
    let isHover = false;
 
    const handleZaloIconMouseenter = _.debounce(function(e) {

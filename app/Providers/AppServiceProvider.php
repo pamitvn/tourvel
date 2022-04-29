@@ -2,10 +2,13 @@
 
 namespace App\Providers;
 
+use App;
+use Illuminate\Database\QueryException;
 use Illuminate\Routing\Events\RouteMatched;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Route;
+use URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,13 +29,21 @@ class AppServiceProvider extends ServiceProvider
     */
    public function boot()
    {
-      config(['app.name' => nova_get_setting('site_name', config('app.name'))]);
+      if (App::isProduction()) {
+         URL::forceScheme('https');
+      }
 
-      $this->handleMailSetting();
+      try {
+         config(['app.name' => nova_get_setting('site_name', config('app.name'))]);
 
-      Route::matched(function (RouteMatched $matched) {
-         $this->handleMenu($matched);
-      });
+         $this->handleMailSetting();
+
+         Route::matched(function (RouteMatched $matched) {
+            $this->handleMenu($matched);
+         });
+      } catch (QueryException $exception) {
+
+      }
    }
 
    private function handleMenu(RouteMatched $matched)

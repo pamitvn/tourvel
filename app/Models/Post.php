@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Emilianotisato\NovaTinyMCE\NovaTinyMCECasts;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
@@ -15,5 +16,9 @@ class Post extends Model
       'seo_description',
       'seo_image',
       'feature_image'
+   ];
+
+   protected $casts = [
+      'content' => NovaTinyMCECasts::class
    ];
 }
