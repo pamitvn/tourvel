@@ -86,10 +86,13 @@ class TourBookingForm extends Component
          if ($property->seat_available !== -1 && $property->seat_available < $property->amount) {
             $this->addError('amount', 'Không còn chỗ trống');
 
-            if ($property->status === TourStatusEnum::Seats) $property->update([
-               'status' => TourStatusEnum::SeatsFull
-            ]);
             return;
+         }
+
+         if ($property->seat_available !== -1 && $property->seat_available >= $property->amount && $property->status === TourStatusEnum::Seats)) {
+               $property->update([
+                  'status' => TourStatusEnum::SeatsFull
+               ]);
          }
 
          $customer = Customer::wherePhoneNumber($validatedData['phoneNumber'])
