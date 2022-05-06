@@ -89,14 +89,21 @@
                               @endif
                            </td>
                            <td class='px-4 py-2'>
-                              {{ \App\Enums\TourStatusEnum::label($property->status->value) }}
+                              @if($property->amount === -1)
+                                 {{ \App\Enums\TourStatusEnum::label($property->status->value) }}
+                              @else
+                                 {{ $property->seat_available }}/{{ $property->amount }}
+                              @endif
                            </td>
                            <td class='px-4 md:py-4'>
-                              <a
-                                 href='{{ route('tour.booking', ['slug' => $tour->slug, 'property' => $property->id]) }}'
-                                 class='block bg-gradient-to-l hover:bg-gradient-to-r from-purple-500 to-pink-500 hover:from-pink-500 hover:to-purple-500 px-3 py-2 text-white rounded-md text-center'>
-                                 Đặt chỗ
-                              </a>
+                              @if($property->amount === -1 || $property->seat_available < $property->amount)
+                                 <a
+                                    href='{{ route('tour.booking', ['slug' => $tour->slug, 'property' => $property->id]) }}'
+                                    class='block bg-gradient-to-l hover:bg-gradient-to-r from-purple-500 to-pink-500 hover:from-pink-500 hover:to-purple-500 px-3 py-2 text-white rounded-md text-center'
+                                 >
+                                    Đặt chỗ
+                                 </a>
+                              @endif
                            </td>
                         </tr>
                      @endforeach

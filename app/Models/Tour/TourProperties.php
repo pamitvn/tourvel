@@ -22,6 +22,7 @@ class TourProperties extends Model
    ];
 
    protected $casts = [
+      'amount' => 'integer',
       'status' => TourStatusEnum::class,
       'started_date' => 'date',
    ];
@@ -46,7 +47,7 @@ class TourProperties extends Model
       return Attribute::get(function () {
          if ($this->status->value !== TourStatusEnum::Seats->value || $this->amount === -1) return -1;
 
-         return TourBooked::whereTourPropertyId($this->id)->count();
+         return TourBooked::whereTourPropertyId($this->id)->withSum('amounts', 'amount')->get()->sum(fn($val) => $val->amounts_sum_amount);
       });
    }
 }

@@ -75,6 +75,7 @@ class TourBookingForm extends Component
          $validatedData = $this->validate();
          $total = $this->getTotalProperty();
          $property = Tour\TourProperties::find($this->property->id);
+         $totalCustomerAfterBooked = $property->seat_available + $total['customers'];
 
          if ($total['customers'] <= 0) {
             foreach ($this->property->prices->filter(fn($val) => Arr::get($this->amounts, strval($val->id), '') === '') as $item) {
@@ -83,16 +84,21 @@ class TourBookingForm extends Component
             return;
          }
 
-         if ($property->seat_available !== -1 && $property->seat_available < $property->amount) {
-            $this->addError('amount', 'Không còn chỗ trống');
-
+         if ($property->seat_available !== -1 && $property->seat_available >= $property->amount) {
+            session()->flash('error', 'Không còn chỗ trống');
             return;
          }
 
-         if ($property->seat_available !== -1 && $property->seat_available >= $property->amount && $property->status === TourStatusEnum::Seats)) {
-               $property->update([
-                  'status' => TourStatusEnum::SeatsFull
-               ]);
+         if ($property->seat_available !== -1 && $totalCustomerAfterBooked > $property->amount) {
+            $sum = ($property->seat_available + $total['customers']) - $property->amount;
+            session()->flash('error', "Số lượng người đi đã vượt quá giới hạn, dư {$sum} chỗ");
+            return;
+         }
+
+         if ($property->seat_available !== -1 && $totalCustomerAfterBooked >= $property->amount && $property->status === TourStatusEnum::Seats) {
+            $property->update([
+               'status' => TourStatusEnum::SeatsFull
+            ]);
          }
 
          $customer = Customer::wherePhoneNumber($validatedData['phoneNumber'])

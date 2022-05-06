@@ -15,6 +15,10 @@ class TourBookedAmount extends Model
         'amount'
     ];
 
+    protected $casts = [
+       'amount' => 'integer'
+    ];
+
     public function booked(): HasOne
     {
         return $this->hasOne(TourBooked::class, 'id', 'booked_id');
